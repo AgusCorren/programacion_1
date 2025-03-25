@@ -1,0 +1,20 @@
+# Archivos de bases de datos
+/backend/DB/*.sqlite
+/backend/DB/*.db
+*.db
+
+# Entornos virtuales y variables de entorno
+tutorial-env/
+venv/
+.env
+/bin
+/include
+/lib
+/lib64
+pyvenv.cfg
+
+# Caché de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
