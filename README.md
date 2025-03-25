@@ -1,2 +1,8 @@
 # programacion_1
-Hola mundo
+
+## Integrantes:
+
+Adriano Salvador Martinez Barbuzza
+Agustin Miguel Correnti Reinoso
+Nicole Solagne Martínez Arias
+Gonzalo Nahuel Albarracin
