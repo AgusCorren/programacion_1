@@ -2,7 +2,7 @@
 
 ## Integrantes:
 
-Adriano Salvador Martinez Barbuzza
-Agustin Miguel Correnti Reinoso
-Nicole Solagne Martínez Arias
-Gonzalo Nahuel Albarracin
+- Martinez Barbuzza Adriano Salvador 
+- Correnti Reinoso Agustin Miguel
+- Martínez Arias Nicole Solagne 
+- Albarracin Gonzalo Nahuel 
