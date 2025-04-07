@@ -7,7 +7,6 @@
 tutorial-env/
 venv/
 .env
-.venv/
 /bin
 /include
 /lib
