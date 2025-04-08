@@ -1,11 +1,15 @@
-from flask import Flask
+from main import create_app
+from main import db
+from dotenv import load_dotenv
 import os
 
-from dotenv import load_dotenv
-
+# Cargar variables del .env
 load_dotenv()
 
-app = Flask(__name__)
+app = create_app()
+app.app_context().push()
 
+# Ejecutar
 if __name__ == '__main__':
-    app.run(debug=True,port=os.getenv('PORT'))
+    db.create_all()
+    app.run(debug=True, host='0.0.0.0', port=os.getenv('PORT'))
