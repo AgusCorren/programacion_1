@@ -1,0 +1,472 @@
+{
+	"info": {
+		"_postman_id": "e7fc3d23-e09d-410e-a513-bfee46f6439d",
+		"name": "grupo_k-API-Rotiseria",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43847533",
+		"_collection_link": "https://correntiagustin.postman.co/workspace/Correnti-Agustin's-Workspace~8c2b87bb-ed91-4c6e-88a8-35098f50fa2f/collection/43847533-e7fc3d23-e09d-410e-a513-bfee46f6439d?action=share&source=collection_link&creator=43847533"
+	},
+	"item": [
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "http://192.168.1.130:5050/usuarios",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.130:5050/usuarios",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"130"
+							],
+							"port": "5050",
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notificaciones",
+			"item": [
+				{
+					"name": "http://192.168.1.130:5050/notificaciones",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.130:5050/notificaciones",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"130"
+							],
+							"port": "5050",
+							"path": [
+								"notificaciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://192.168.1.130:5050/notificaciones",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.130:5050/notificaciones",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"130"
+							],
+							"port": "5050",
+							"path": [
+								"notificaciones"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "http://192.168.1.130:5050/login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.130:5050/login",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"130"
+							],
+							"port": "5050",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://192.168.1.130:5050/logout",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.130:5050/logout",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"130"
+							],
+							"port": "5050",
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pedidos",
+			"item": [
+				{
+					"name": "http://192.168.1.130:5050/pedido/1",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.130:5050/pedido/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"130"
+							],
+							"port": "5050",
+							"path": [
+								"pedido",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://192.168.1.130:5050/pedido/1",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.130:5050/pedido/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"130"
+							],
+							"port": "5050",
+							"path": [
+								"pedido",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://192.168.1.130:5050/pedido/1",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.130:5050/pedido/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"130"
+							],
+							"port": "5050",
+							"path": [
+								"pedido",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://192.168.1.130:5050/pedidos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.130:5050/pedidos",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"130"
+							],
+							"port": "5050",
+							"path": [
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://192.168.1.130:5050/pedidos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.130:5050/pedidos",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"130"
+							],
+							"port": "5050",
+							"path": [
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "http://192.168.1.130:5050/productos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.130:5050/productos",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"130"
+							],
+							"port": "5050",
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://192.168.1.130:5050/productos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.130:5050/productos",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"130"
+							],
+							"port": "5050",
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://192.168.1.130:5050/producto/1",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.130:5050/producto/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"130"
+							],
+							"port": "5050",
+							"path": [
+								"producto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://192.168.1.130:5050/producto/1",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.130:5050/producto/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"130"
+							],
+							"port": "5050",
+							"path": [
+								"producto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://192.168.1.130:5050/producto/1",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.130:5050/producto/1",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"130"
+							],
+							"port": "5050",
+							"path": [
+								"producto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Valoraciones",
+			"item": [
+				{
+					"name": "http://192.168.1.130:5050/valoraciones",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.130:5050/valoraciones",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"130"
+							],
+							"port": "5050",
+							"path": [
+								"valoraciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://192.168.1.130:5050/valoraciones",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.1.130:5050/valoraciones",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"130"
+							],
+							"port": "5050",
+							"path": [
+								"valoraciones"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

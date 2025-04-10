@@ -1,3 +1,10 @@
 flask
 python-dotenv
 flask-restful
+flask_sqlalchemy
+
+#Para dps
+
+#Flask-JWT-Extended
+#Flask-SQLAlchemy
+#marshmallow
