@@ -4,25 +4,18 @@ class Pedido(db.Model):
     __tablename__ = 'pedido'
     id = db.Column(db.Integer, primary_key=True)
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=True)
-    producto = db.Column(db.String(100), nullable=False)
-    cantidad = db.Column(db.Integer, nullable=False)
+    fecha = db.Column(db.DateTime, default=db.func.current_timestamp())
     estado = db.Column(db.String(50), default="pendiente")
+    total = db.Column(db.Float, default=0.0)  # Asegúrate que esta columna exista
+    
+    items = db.relationship("ItemPedido", back_populates="pedido", cascade="all, delete-orphan")
     
     def to_json(self):
         return {
             'id': self.id,
             'usuario_id': self.usuario_id,
-            'producto': str(self.producto),
-            'cantidad': self.cantidad,
-            'estado': str(self.estado)
+            'fecha': self.fecha.isoformat() if self.fecha else None,
+            'estado': self.estado,
+            'total': self.total,
+            'items': [item.to_json() for item in self.items]
         }
-    
-    @staticmethod
-    def from_json(json_data):
-        return Pedido(
-            id=json_data.get('id'),
-            usuario_id=json_data.get('usuario_id'),
-            producto=json_data.get('producto'),
-            cantidad=json_data.get('cantidad'),
-            estado=json_data.get('estado', "pendiente")
-        )

@@ -1,92 +1,90 @@
 from flask_restful import Resource
 from flask import request, jsonify, abort
 from main.models.pedido_db import Pedido as PedidoModel
+from main.models.item_pedido_db import ItemPedido
 from .. import db
-
-class Pedido(Resource):
-    def get(self, id):
-        # Obtener un pedido por su ID; si no existe, se retorna un error 404.
-        pedido = PedidoModel.query.get_or_404(id)
-        return pedido.to_json(), 200
-
-    def put(self, id):
-        # Actualizar un pedido existente.
-        pedido = PedidoModel.query.get_or_404(id)
-        data = request.get_json(force=True)
-
-        # --- Código de prueba antiguo (comentado) ---
-        # Este bloque se usaba para pruebas de actualización sin enviar un JSON real.
-        # data_example = {
-        #     'producto': 'Producto de prueba',
-        #     'cantidad': 1,
-        #     'estado': 'pendiente'
-        # }
-        # data = data_example
-        # ----------------------------------------------
-
-        for key, value in data.items():
-            setattr(pedido, key, value)
-        try:
-            db.session.commit()
-        except Exception as e:
-            db.session.rollback()
-            abort(500, description=f"Error al actualizar el pedido: {str(e)}")
-        return pedido.to_json(), 200
-
-    def delete(self, id):
-        # Eliminar un pedido por su ID.
-        pedido = PedidoModel.query.get_or_404(id)
-        try:
-            db.session.delete(pedido)
-            db.session.commit()
-        except Exception as e:
-            db.session.rollback()
-            abort(500, description=f"Error al eliminar el pedido: {str(e)}")
-        return pedido.to_json(), 200
 
 class Pedidos(Resource):
     def get(self):
-        # Obtener la lista de todos los pedidos.
         pedidos = PedidoModel.query.all()
-        
-        # --- Código de prueba antiguo (comentado) ---
-        # Este bloque se usaba para devolver datos de ejemplo sin conexión a la base de datos.
-        # test_data = [
-        #     {'id': 1, 'producto': 'Producto A', 'cantidad': 2, 'estado': 'pendiente'},
-        #     {'id': 2, 'producto': 'Producto B', 'cantidad': 1, 'estado': 'completado'}
-        # ]
-        # return jsonify(test_data)
-        # ----------------------------------------------
-        
         return jsonify([p.to_json() for p in pedidos])
     
     def post(self):
-        # Crear un nuevo pedido.
         json_data = request.get_json(force=True)
         
-        # --- Validaciones adicionales (comentadas originalmente) ---
-        # Se validaba que existieran campos obligatorios como 'producto' y 'cantidad'.
-        # required_fields = ['producto', 'cantidad']
-        # missing = [field for field in required_fields if field not in json_data]
-        # if missing:
-        #     return {"error": f"Faltan campos obligatorios: {', '.join(missing)}"}, 400
-        # --------------------------------------------------------------
-        
-        required_fields = ['producto', 'cantidad']
+        # Validaciones
+        required_fields = ['usuario_id', 'items']
         missing_fields = [field for field in required_fields if field not in json_data]
         if missing_fields:
             abort(400, description=f"Faltan campos obligatorios: {', '.join(missing_fields)}")
         
-        try:
-            pedido = PedidoModel.from_json(json_data)
-        except Exception as e:
-            abort(500, description=f"Error al convertir JSON a objeto Pedido: {str(e)}")
+        if not isinstance(json_data['items'], list) or len(json_data['items']) == 0:
+            abort(400, description="El pedido debe contener al menos un item")
         
         try:
+            # Crear pedido
+            pedido = PedidoModel(
+                usuario_id=json_data['usuario_id'],
+                estado='pendiente',
+                total=0  # Se calcula abajo
+            )
+            
+            # Agregar items
+            total = 0
+            for item_data in json_data['items']:
+                if not all(k in item_data for k in ['producto_id', 'cantidad']):
+                    abort(400, description="Cada item debe tener producto_id y cantidad")
+                
+                producto = ProductoModel.query.get(item_data['producto_id'])
+                if not producto:
+                    abort(404, description=f"Producto {item_data['producto_id']} no encontrado")
+                
+                item = ItemPedido(
+                    producto_id=item_data['producto_id'],
+                    cantidad=item_data['cantidad'],
+                    precio_unitario=producto.precio
+                )
+                pedido.items.append(item)
+                total += item.cantidad * item.precio_unitario
+            
+            pedido.total = total
             db.session.add(pedido)
             db.session.commit()
+            return pedido.to_json(), 201
+            
         except Exception as e:
             db.session.rollback()
-            abort(500, description=f"Error al guardar el pedido en la base de datos: {str(e)}")
+            abort(500, description=f"Error al crear pedido: {str(e)}")
+
+class Pedido(Resource):
+    def get(self, id):
+        pedido = PedidoModel.query.get_or_404(id)
+        return pedido.to_json()
+    
+    def put(self, id):
+        pedido = PedidoModel.query.get_or_404(id)
+        data = request.get_json()
         
-        return pedido.to_json(), 201
+        # Solo permitir actualizar estado
+        if 'estado' in data:
+            estados_validos = ['pendiente', 'preparacion', 'listo', 'entregado', 'cancelado']
+            if data['estado'] not in estados_validos:
+                abort(400, description=f"Estado inválido. Use: {', '.join(estados_validos)}")
+            pedido.estado = data['estado']
+        
+        try:
+            db.session.commit()
+            return pedido.to_json()
+        except Exception as e:
+            db.session.rollback()
+            abort(500, description=f"Error al actualizar pedido: {str(e)}")
+    
+    def delete(self, id):
+        pedido = PedidoModel.query.get_or_404(id)
+        try:
+            db.session.delete(pedido)
+            db.session.commit()
+            return {'message': 'Pedido eliminado'}, 200
+        except Exception as e:
+            db.session.rollback()
+            abort(500, description=f"Error al eliminar pedido: {str(e)}")
