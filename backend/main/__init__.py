@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 
+from pathlib import Path
 import os
 
 # Inicializamos restful
@@ -10,17 +11,24 @@ api = Api()
 db = SQLAlchemy()
 
 def create_app():
-    
     app = Flask(__name__)
-
     load_dotenv()  # Carga variables del .env
 
+    # Obtener rutas desde variables de entorno
+    db_dir = Path(os.getenv('DATABASE_PATH'))
+    db_name = os.getenv('DATABASE_NAME')
+    db_path = db_dir / db_name
 
-    if not os.path.exists(os.getenv('DATABASE_PATH')+os.getenv('DATABASE_NAME')):
-        os.mknod(os.getenv('DATABASE_PATH')+os.getenv('DATABASE_NAME'))
+    # Asegurarse de que el directorio exista
+    db_dir.mkdir(parents=True, exist_ok=True)
 
+    # Crear el archivo si no existe (multiplataforma)
+    if not db_path.exists():
+        db_path.touch()
+
+    # Configuración de SQLAlchemy
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////'+os.getenv('DATABASE_PATH')+os.getenv('DATABASE_NAME')
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + str(db_path.resolve())
     db.init_app(app)
 
     # Cargar los recursos
@@ -37,12 +45,11 @@ def create_app():
     api.add_resource(resources.UsuarioResource, "/usuario/<int:id>")
 
     api.add_resource(resources.ValoracionesResource, "/valoraciones")
-    
+
     api.add_resource(resources.LoginResource, "/login/")
     api.add_resource(resources.LogoutResource, "/logout/")
 
     # Inicializar la API
-    
     api.init_app(app)
 
     return app

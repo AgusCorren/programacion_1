@@ -1,5 +1,6 @@
-from .notificacion_db import Notificacion as NotificacionModel
-from .pedido_db import Pedido as PedidoModel
-from .producto_db import Producto as ProductoModel
-from .usuario_db import Usuario as UsuarioModel
-from .valoracion_db import Valoracion as ValoracionModel
+from .notificaciones_db import Notificaciones as NotificacionModel
+from .pedidos_db import Pedidos as PedidoModel
+from .productos_db import Productos as ProductoModel
+from .usuarios_db import Usuarios as UsuarioModel
+from .valoraciones_db import Valoraciones as ValoracionModel
+from .item_pedidos_db import ItemsPedidos as ItemPedidoModel
