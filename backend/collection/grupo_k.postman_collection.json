@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "a5782eac-5432-4202-b6f4-ec6ccae4904a",
+		"name": "grupo_k",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43847030",
+		"_collection_link": "https://adrianomartinez.postman.co/workspace/Adriano-Martinez's-Workspace~564b9a9b-acbf-4880-8bdd-8a12559a962b/collection/43847030-a5782eac-5432-4202-b6f4-ec6ccae4904a?action=share&source=collection_link&creator=43847030"
+	},
+	"item": [
+		{
+			"name": "Animales",
+			"item": [
+				{
+					"name": "Animales",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Mechi\",\n    \"raza\": \"Caniche toy\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/animales",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"animales"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Animales",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/animales",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"animales"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Animal",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Pepita\",\n    \"raza\": \"Obejero Aleman\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/animal/3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"animal",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
